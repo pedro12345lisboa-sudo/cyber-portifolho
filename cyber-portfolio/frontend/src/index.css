@@ -1,0 +1,272 @@
+:root {
+  --bg: #050a12;
+  --bg-panel: #0a1220;
+  --line: #16233a;
+  --cyan: #4fe0e8;
+  --blue: #3d7bff;
+  --text: #dbe6f2;
+  --muted: #6d8099;
+  --star-off: #223350;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-attachment: fixed;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* HERO */
+.hero {
+  padding: 96px 0 64px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  background: var(--bg-panel);
+}
+
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 {
+  font-size: 44px;
+  line-height: 1.15;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.hero .role {
+  color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+
+.hero p.bio {
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.links {
+  display: flex;
+  gap: 14px;
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.link-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* SECTIONS */
+section.block {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.block-head h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.block-head .count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* SKILLS */
+.category-group {
+  margin-bottom: 32px;
+}
+
+.category-group:last-child { margin-bottom: 0; }
+
+.category-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--blue);
+  margin: 0 0 14px;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  gap: 16px;
+}
+
+.skill-info { min-width: 0; }
+
+.skill-name {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 3px;
+}
+
+.skill-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.skill-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.skill-status.aprendendo {
+  color: var(--cyan);
+  border-color: rgba(79, 224, 232, 0.35);
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.star {
+  width: 15px;
+  height: 15px;
+}
+
+/* PROJECTS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.project-card {
+  background: var(--bg-panel);
+  padding: 24px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.15s ease;
+}
+
+.project-card:hover { background: #0d1526; }
+
+.project-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.project-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--cyan);
+}
+
+footer {
+  padding: 32px 0 64px;
+  text-align: center;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.state-msg {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 64px 0 40px; }
+  .hero h1 { font-size: 32px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skill-row { flex-wrap: wrap; }
+}
