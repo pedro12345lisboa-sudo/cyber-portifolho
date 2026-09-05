@@ -515,11 +515,22 @@ footer {
 /* GENERIC PAGE CONTENT */
 .page-content { padding: 48px 0 72px; }
 
+.page-kicker {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
 .page-title {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 38px;
+  line-height: 1.1;
   font-weight: 700;
-  margin: 0 0 8px;
+  margin: 0 0 10px;
+  max-width: 14ch;
 }
 
 .page-sub {
