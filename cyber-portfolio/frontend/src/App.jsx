@@ -6,8 +6,11 @@ import Avaliacao from './pages/Avaliacao.jsx'
 import Login from './pages/Login.jsx'
 import Admin from './pages/Admin.jsx'
 import ProtectedRoute from './pages/ProtectedRoute.jsx'
+import useSmoothScroll from './hooks/useSmoothScroll.js'
 
 export default function App() {
+  useSmoothScroll()
+
   return (
     <BrowserRouter>
       <Routes>

@@ -23,9 +23,22 @@
 html, body {
   margin: 0;
   background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 900px 600px at 15% -10%, rgba(61, 123, 255, 0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(46, 204, 113, 0.10), transparent 60%),
+    radial-gradient(ellipse 800px 600px at 50% 100%, rgba(61, 123, 255, 0.08), transparent 60%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+[data-theme="light"] body,
+[data-theme="light"] html {
+  background-image:
+    radial-gradient(ellipse 900px 600px at 15% -10%, rgba(46, 94, 204, 0.08), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(31, 157, 85, 0.06), transparent 60%),
+    radial-gradient(ellipse 800px 600px at 50% 100%, rgba(46, 94, 204, 0.05), transparent 60%);
 }
 
 a { color: inherit; }
@@ -302,6 +315,12 @@ section { margin-bottom: 40px; }
   transform: translateY(-1px);
 }
 
+.link-btn:active { transform: scale(0.97); }
+.theme-toggle:active { transform: scale(0.93); }
+.avaliacao-form button:active,
+.admin-section-head button:active,
+.login-form button:active { transform: scale(0.97); }
+
 .icon-btn {
   width: 40px;
   height: 40px;
@@ -457,6 +476,17 @@ footer {
   top: 0;
   background: var(--bg);
   z-index: 5;
+  transition: padding 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease;
+}
+
+.site-nav-scrolled {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.site-nav-scrolled .site-nav-link {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .site-nav-inner {

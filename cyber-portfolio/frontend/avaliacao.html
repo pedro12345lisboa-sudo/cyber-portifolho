@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVALIAÇÃO — PEDRO LISBOA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body class="bg-[#050507] text-white">
+  <nav class="overlay-top solid"><a href="/index.html" class="nav-brand">PEDRO LISBOA</a><a href="/index.html" class="nav-link">← BACK</a></nav>
+  <main class="page-wrap">
+    <p class="eyebrow">FEEDBACK / AVALIAÇÃO</p>
+    <h1 class="page-title">Deixe sua<br/>Avaliação</h1>
+    <form id="formAvaliacao" class="mt-8 max-w-[440px] space-y-4 border border-white/10 rounded-2xl p-6 bg-white/[0.03]">
+      <label class="field"><span>Nome</span><input id="nome" required placeholder="Seu nome" /></label>
+      <label class="field"><span>Nota</span>
+        <select id="nota"><option value="5">★★★★★ — 5</option><option value="4">★★★★ — 4</option><option value="3">★★★ — 3</option><option value="2">★★ — 2</option><option value="1">★ — 1</option></select>
+      </label>
+      <label class="field"><span>Comentário</span><textarea id="comentario" rows="4" placeholder="O que achou do portfólio?"></textarea></label>
+      <button type="submit" class="btn-primary w-full">ENVIAR AVALIAÇÃO</button>
+      <p id="aviso" class="text-sm"></p>
+    </form>
+    <h2 class="mono-label mt-10">AVALIAÇÕES RECENTES</h2>
+    <div id="listaAvaliacoes" class="mt-4 space-y-3"></div>
+  </main>
+  <footer class="overlay-bottom static"><span class="mono-label">AVALIAÇÃO — 04 / 04</span><a href="/index.html" class="nav-link">HOME →</a></footer>
+  <script type="module" src="/src/js/avaliacao.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROFILE — PEDRO LISBOA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body class="bg-[#050507] text-white">
+  <nav class="overlay-top solid">
+    <a href="/index.html" class="nav-brand">PEDRO LISBOA</a>
+    <a href="/index.html" class="nav-link">← BACK</a>
+  </nav>
+  <main class="page-wrap">
+    <p class="eyebrow">PROFILE / BLUE TEAM</p>
+    <h1 class="page-title">Sobre<br/>Mim</h1>
+    <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-10 mt-10">
+      <div>
+        <img id="avatar" class="w-28 h-28 rounded-full border border-white/10 object-cover mb-6 hidden" alt="avatar" />
+        <div id="bio" class="space-y-4 text-white/70 leading-relaxed text-[15px]"></div>
+        <div id="links" class="flex gap-3 mt-8"></div>
+      </div>
+      <div class="border border-white/10 rounded-2xl p-6 bg-white/[0.04] backdrop-blur">
+        <p class="mono-label">STACK</p>
+        <p class="text-sm text-white/60 mt-2">FastAPI · React · Supabase · Wazuh · Burp · Nmap · Python</p>
+        <p class="mono-label mt-6">FOCO</p>
+        <p class="text-sm text-white/60 mt-2">Defesa, detecção, hardening, análise de tráfego e resposta a incidentes.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="overlay-bottom static"><span class="mono-label">PROFILE — 01 / 04</span><a href="/skills.html" class="nav-link">SKILLS →</a></footer>
+  <script type="module" src="/src/js/profile.js"></script>
+</body>
+</html>
