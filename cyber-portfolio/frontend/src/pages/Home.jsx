@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Stars from '../components/Stars.jsx'
 import { SunIcon, MoonIcon } from '../components/ThemeIcons.jsx'
 import { GithubIcon, InstagramIcon } from '../components/SocialIcons.jsx'
+import SiteNav from '../components/SiteNav.jsx'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -10,6 +11,7 @@ export default function Home() {
   const [skills, setSkills] = useState([])
   const [projetos, setProjetos] = useState([])
   const [erro, setErro] = useState(false)
+  const [carregando, setCarregando] = useState(true)
   const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
@@ -28,9 +30,23 @@ export default function Home() {
         setProjetos(pr)
       })
       .catch(() => setErro(true))
+      .finally(() => setCarregando(false))
   }, [])
 
   const categorias = [...new Set(skills.map((s) => s.categoria || 'Outros'))]
+
+  if (carregando) {
+    return (
+      <div className="skeleton-page">
+        <div className="wrap">
+          <div className="skeleton-block" style={{ width: '84px', height: '84px', borderRadius: '50%', marginBottom: '28px' }} />
+          <div className="skeleton-block" style={{ width: '220px', height: '38px', marginBottom: '12px' }} />
+          <div className="skeleton-block" style={{ width: '160px', height: '16px', marginBottom: '24px' }} />
+          <div className="skeleton-block" style={{ width: '380px', maxWidth: '80%', height: '14px' }} />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -38,7 +54,9 @@ export default function Home() {
         {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
       </button>
 
-      <header className="hero">
+      <SiteNav />
+
+      <header className="hero fade-in">
         <div className="wrap">
           <div className="hero-top">
             {perfil?.avatar_url && <img className="avatar" src={perfil.avatar_url} alt="Avatar" />}
@@ -66,7 +84,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="block" id="skills">
+      <section className="block fade-in fade-in-delay-1" id="skills">
         <div className="wrap">
           <div className="block-head">
             <h2>Áreas &amp; Skills</h2>
@@ -76,8 +94,8 @@ export default function Home() {
           {erro && <p className="state-msg">Não foi possível carregar os dados. Verifique se o backend está rodando.</p>}
           {!erro && skills.length === 0 && <p className="state-msg">Nenhuma skill cadastrada ainda no Supabase.</p>}
 
-          {categorias.map((cat) => (
-            <div className="category-group" key={cat}>
+          {categorias.map((cat, ci) => (
+            <div className="category-group fade-in" style={{ animationDelay: `${0.15 + ci * 0.06}s` }} key={cat}>
               <p className="category-title">{cat}</p>
               {skills
                 .filter((s) => (s.categoria || 'Outros') === cat)
@@ -98,7 +116,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="block" id="projetos">
+      <section className="block fade-in fade-in-delay-2" id="projetos">
         <div className="wrap">
           <div className="block-head">
             <h2>Projetos</h2>
@@ -108,8 +126,15 @@ export default function Home() {
           {!erro && projetos.length === 0 && <p className="state-msg">Nenhum projeto cadastrado ainda no Supabase.</p>}
 
           <div className="projects-grid">
-            {projetos.map((p) => (
-              <a className="project-card" href={p.link || '#'} target="_blank" rel="noreferrer" key={p.id}>
+            {projetos.map((p, i) => (
+              <a
+                className="project-card fade-in"
+                style={{ animationDelay: `${0.1 + i * 0.05}s` }}
+                href={p.link || '#'}
+                target="_blank"
+                rel="noreferrer"
+                key={p.id}
+              >
                 <h3>{p.titulo}</h3>
                 <p>{p.descricao}</p>
                 {p.link && <span className="project-link">ver projeto →</span>}

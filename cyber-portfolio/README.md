@@ -61,6 +61,19 @@ create policy "Permitir leitura publica projetos" on projetos for select using (
    redirecionado para `/admin`, onde pode editar/apagar skills e projetos.
    Visitantes comuns não veem nem acessam essa rota sem login.
 
+## 5. Novas páginas: Skills, História e Avaliação
+
+Rode o arquivo `supabase_avaliacoes_e_historia.sql` no SQL Editor do Supabase.
+Ele cria a tabela `avaliacoes` (com leitura e escrita públicas — qualquer
+visitante pode avaliar sem login) e adiciona o campo `historia` na tabela
+`perfil`.
+
+Depois, edite sua linha em `perfil` e preencha o campo `historia` com o texto
+da sua trajetória (pode usar quebras de linha para separar parágrafos).
+
+As páginas ficam em `/skills`, `/historia` e `/avaliacao`, acessíveis pelo
+menu de navegação que aparece no topo do site.
+
 
 ## Notas
 - O avatar e a logo são fixos: trocam direto no campo `avatar_url` / `logo_url`
