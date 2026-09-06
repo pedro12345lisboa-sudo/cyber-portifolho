@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import SiteNav from '../components/SiteNav.jsx'
-import { supabase } from '../supabaseClient.js'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function Avaliacao() {
   const [avaliacoes, setAvaliacoes] = useState([])
@@ -13,8 +14,13 @@ export default function Avaliacao() {
 
   async function carregar() {
     setCarregando(true)
-    const { data } = await supabase.from('avaliacoes').select('*').order('criado_em', { ascending: false })
-    setAvaliacoes(data || [])
+    try {
+      const r = await fetch(`${API_URL}/api/avaliacoes`)
+      const data = await r.json()
+      setAvaliacoes(data || [])
+    } catch {
+      setAvaliacoes([])
+    }
     setCarregando(false)
   }
 
@@ -24,17 +30,36 @@ export default function Avaliacao() {
     e.preventDefault()
     setEnviando(true)
     setMensagem(null)
-    const { error } = await supabase.from('avaliacoes').insert({ nome, nota, comentario })
-    setEnviando(false)
-    if (error) {
-      setMensagem({ tipo: 'erro', texto: 'Não foi possível enviar. Tente novamente.' })
-      return
+
+    try {
+      const r = await fetch(`${API_URL}/api/avaliacoes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, nota, comentario }),
+      })
+
+      if (r.status === 429) {
+        const err = await r.json()
+        setMensagem({ tipo: 'erro', texto: err.detail || 'Limite de avaliações atingido. Tente novamente mais tarde.' })
+        setEnviando(false)
+        return
+      }
+
+      if (!r.ok) {
+        setMensagem({ tipo: 'erro', texto: 'Não foi possível enviar. Tente novamente.' })
+        setEnviando(false)
+        return
+      }
+
+      setMensagem({ tipo: 'sucesso', texto: 'Obrigado pela avaliação!' })
+      setNome('')
+      setNota(5)
+      setComentario('')
+      carregar()
+    } catch {
+      setMensagem({ tipo: 'erro', texto: 'Não foi possível conectar ao servidor.' })
     }
-    setMensagem({ tipo: 'sucesso', texto: 'Obrigado pela avaliação!' })
-    setNome('')
-    setNota(5)
-    setComentario('')
-    carregar()
+    setEnviando(false)
   }
 
   return (
@@ -42,7 +67,7 @@ export default function Avaliacao() {
       <SiteNav />
       <div className="wrap page-content fade-in">
         <h1 className="page-title">Avalie o Portfólio</h1>
-        <p className="page-sub">Deixe sua nota e um comentário — sua opinião ajuda a melhorar o site.</p>
+        <p className="page-sub">Deixe sua nota e um comentário — limite de 3 avaliações por hora para evitar spam.</p>
 
         <form className="avaliacao-form" onSubmit={enviar}>
           <label>

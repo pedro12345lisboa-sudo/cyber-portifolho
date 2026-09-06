@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Stars from '../components/Stars.jsx'
-import { SunIcon, MoonIcon } from '../components/ThemeIcons.jsx'
 import { GithubIcon, InstagramIcon } from '../components/SocialIcons.jsx'
 import SiteNav from '../components/SiteNav.jsx'
 
@@ -127,7 +126,11 @@ export default function Home() {
   return (
     <div ref={rootRef}>
       <button className="theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} aria-label="Alternar tema">
-        {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        <img
+          src={theme === 'dark' ? '/sun-icon.png' : '/moon-icon.png'}
+          alt={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+          className="theme-icon-img"
+        />
       </button>
 
       <SiteNav />
